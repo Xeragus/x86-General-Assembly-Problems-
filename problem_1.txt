@@ -1,0 +1,8 @@
+Problem 1: Write an assembly application following the instructions bellow:
+• Put your ID number XXXXX in the register CX (if your ID number contains more than 5
+digits, put the last 5 digits only).
+• Check if the last 3 bits of your ID number are ones, using some logic instruction. In a
+comment write the values of the flags after this instruction.
+• Calculate the value of the expression 5x-21 step by step, and save the result in DH. X is a
+byte variable initialized with 5.
+• Print the result from the calculation of the expression 5x-21 on the display.

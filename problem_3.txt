@@ -1,0 +1,4 @@
+Problem 3: A two-digit number is inserted from the keyboard. Store that number in a variable
+num. Find the residual of the division of that number with 7 and store the result value in a
+variable residual.
+Check if the number is divisible by 7 and if yes, print three characters ("YES") on the display.

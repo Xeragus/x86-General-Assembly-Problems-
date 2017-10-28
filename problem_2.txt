@@ -1,0 +1,7 @@
+Problem 2: Read a symbol from the keyboard. If the symbol is a letter, using register-indirect
+mode with displacement write this letter at the memory location DS:20h. Write the next letter
+in the alphabet (if it exist) ,using based and indexed mode, at location DS:21h. Write the
+previous letter in the alphabet (if it exist) at location DS:21h using direct addressing mode.
+For example, if we type c on the keyboard, c, d and b should be stored in the memory. In we
+type a, only a and b should be stored, because there is no previous letter in the alphabet before
+a.
