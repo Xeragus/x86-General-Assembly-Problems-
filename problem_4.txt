@@ -1,0 +1,6 @@
+Problem 4: Write an application that reads a number from the keyboard. # is inserted as the
+end of the number. The application should find the sum of all even digits in the integer, store
+this value in the variable s and print it on the screen.
+Example:
+Input: 28# Output: s = 10
+Input: 15# Output: s = 0

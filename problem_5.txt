@@ -1,0 +1,7 @@
+Problem 5: Define an array of 10 elements of type data byte. The values (characters) of the
+array are read from the keyboard. The array should be modified in order to keep only the
+upper-case letters (A-Z) which is successor of a digit (Beside the first element in the array that
+will stay in the array if it is an upper-case letter). The modified array should be printed on the
+display.
+Example:
+If the array is: a2A21BC<2b, it should be modified into: AB.

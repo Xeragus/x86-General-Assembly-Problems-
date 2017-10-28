@@ -1,0 +1,10 @@
+Problem 6: In the data segment define a square matrix (3x3) and initialize it with random values
+from 0 to 999. Create an application where the user enters a row and a column number, and
+then the proper element from the matrix is changed to value 3 if the number has 3 digits, to 2 if
+the number has 2 digits and to 1 if the number has 1 digit. The procedure for entering values
+ends when the user enters ‘#’, after which the program ends.
+Example: The values of the matrix are : 300, 231,333,23,24,56,6,5,4
+Input: 3 2 The values of the matrix are: 300, 231,333,23,24,56,6,1,4
+Input: 1 1 The values of the matrix are: 3, 231,333,23,24,56,6,1,4
+Input: 1 1 The values of the matrix are: 1, 231,333,23,24,56,6,1,4
+Input: #
