@@ -1,0 +1,60 @@
+; multi-segment executable file template.
+
+data segment
+    ; add your data here!
+    remainder db ? ; declaring a variable for the remainder
+    pkey db "press any key...$"
+    message db " YES$"
+ends
+
+stack segment
+    dw   128  dup(0)
+ends
+
+code segment
+start:
+; set segment registers:
+    mov ax, data
+    mov ds, ax
+    mov es, ax
+
+    ; add your code here          
+    mov ah, 1d ; input the first digit
+    int 21h
+    mov ch, al ; place it in ch
+    mov ah, 1d
+    int 21h
+    mov cl, al ; the second digit in cl
+    sub ch, 30h ; ascii conversion
+    sub cl, 30h ; ascii conversion
+    mov al, 10d ; for the following multiplication
+    ; transformations in order for us to get the real two digit number
+    mul ch ; 
+    add cl, al ; 
+    mov al, cl ; 
+    mov cl, 7d ; 
+    div cl ; 
+    ; the result is in al, the remainder in ah 
+    mov remainder, ah ; 
+    cmp remainder, 0d
+    jg end
+    
+    lea dx, message ; printing of "YES"
+    mov ah, 9
+    int 21h
+    
+    end:
+            
+    lea dx, pkey
+    mov ah, 9
+    int 21h        ; output string at ds:dx
+    
+    ; wait for any key....    
+    mov ah, 1
+    int 21h
+    
+    mov ax, 4c00h ; exit to operating system.
+    int 21h    
+ends
+
+end start ; set entry point and stop the assembler.

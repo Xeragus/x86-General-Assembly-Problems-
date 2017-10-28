@@ -1,0 +1,84 @@
+; multi-segment executable file template.
+
+data segment
+    ; add your data here!
+    pkey db "press any key...$"
+ends
+
+stack segment
+    dw   128  dup(0)
+ends
+
+code segment
+start:
+; set segment registers:
+    mov ax, data
+    mov ds, ax
+    mov es, ax
+
+    ; add your code here 
+    ; input a letter from the keyboard
+    mov ah, 1d
+    int 21h
+
+    ; checking if it is a letter and jumping to the associated label
+    cmp al, 65d
+    jl end
+    cmp al, 90d
+    jg possible_lower_case
+    cmp al, 65d
+    je letter_a
+    cmp al, 90d 
+    je letter_z
+    jmp between_b_and_y
+    
+    between_b_and_y: ; will be used for the letters between 'B' and 'Y'
+    mov bx, 20h
+    mov ds:[bx], al
+    inc al
+    mov ds:[bx+1], al
+    dec al
+    dec al
+    mov ds:[1fh], al
+    jmp end
+    
+    letter_a: ; will be used for 'a' and 'A'
+    mov bx, 20h
+    mov ds:[bx], al
+    inc al
+    mov ds:[bx+1], al
+    jmp end   
+    
+    letter_z: ; will be used for 'Z' and 'z'
+    mov bx, 20h ; bx is rebased on DS:bx
+    mov ds:[bx], al
+    dec al ;
+    mov ds:[1fh], al ; direct addressing
+    jmp end
+    
+    possible_lower_case: ; possible lower case letters
+    cmp al, 97d  ; if it is lesser than 'a' go to the end
+    jl end
+    cmp al, 122d
+    jg end ; if it is greater than 'z' go to the end
+    cmp al, 97d  ; if it is 'a'
+    je letter_a:
+    cmp al, 122d  ; if it is 'z'
+    je letter_z:
+    jmp between_b_and_y ; if it is between 'b' and 'y'
+    
+    end:
+            
+    lea dx, pkey
+    mov ah, 9
+    int 21h        ; output string at ds:dx
+    
+    ; wait for any key....    
+    mov ah, 1
+    int 21h
+    
+    mov ax, 4c00h ; exit to operating system.
+    int 21h    
+ends
+
+end start ; set entry point and stop the assembler.
