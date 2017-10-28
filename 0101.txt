@@ -1,0 +1,53 @@
+; multi-segment executable file template.
+
+data segment
+    ; add your data here!
+    x db ? ; declaring the variable x
+    pkey db "press any key...$"
+ends
+
+stack segment
+    dw   128  dup(0)
+ends
+
+code segment
+start:
+; set segment registers:
+    mov ax, data
+    mov ds, ax
+    mov es, ax
+
+    ; add your code here  
+    mov x, 5d ; initializing the variable x
+    mov cx, 51122d ; index number: 51122 (1100011110110010b) 
+    
+    ; in the next instruction we are comparing the value of cx with 1111111111111000
+    ; if the last 3 bits are 1's the value of 1111111111111111 will be saved in cx 
+    or cx, 1111111111111000b
+    
+    ; the values of the flag register:
+    ; cf=0, zf=0, sf=1, of=0, pf=1, af=0, if=1, df=0 
+     
+    mov al, 5d
+    mul x
+    mov dh, al 
+    sub dh, 21d  
+                
+    mov dl, dh
+    add dl, 30h ; ascii conversion                                
+    mov ah, 2h ; preparing for printing the result on the screen
+    int 21h ; interrupt, the value in dl will be printed out
+            
+    lea dx, pkey
+    mov ah, 9
+    int 21h        ; output string at ds:dx
+    
+    ; wait for any key....    
+    mov ah, 1
+    int 21h
+    
+    mov ax, 4c00h ; exit to operating system.
+    int 21h    
+ends
+
+end start ; set entry point and stop the assembler.
