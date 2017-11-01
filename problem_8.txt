@@ -1,0 +1,10 @@
+Write an assembly application following the instructions below:
+- Insert 10 numbers (0-999) from keyboard and insert them into an array
+- Search through the array and find the first occurence of number bigger than 500
+- Revert the array from that position until the end of the array
+
+Example:
+The initial array:
+323, 4, 284, 199, 45, 800, 67, 523, 79, 9
+The reverted array:
+323, 4, 284, 199, 45, 9, 79, 523, 67, 800
