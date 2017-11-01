@@ -1,0 +1,7 @@
+In the data segment in the memory with offset 30h
+save the first 15 numbers (dw) from the sequence :
+1,2,4,7,11,... , but in the reverse order. Save the
+numbers using a proedure.
+
+The difference between 2 elements in the sequence is 1, 2,
+3,....
