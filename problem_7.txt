@@ -1,0 +1,6 @@
+7. A two digit number is intered via keyboard (<84). Find
+if the digit of tents of the sum of the entered number
+and 16 is odd or even. If it is even print: “The digit is
+even”, and in all other cases print “The digit is odd”!
+Input: 46 Output: The digit is even
+Input: 82 Output: The digit is odd
